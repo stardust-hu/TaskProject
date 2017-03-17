@@ -8,7 +8,7 @@
 {% endblock %}
 
 {% block main %}
-    <div class="dialy">
+    <div class="daily container">
         <h4>当前用户：{{ user.username }} - {{ user.first_name }}</h4>
         <form method="post">
             {% csrf_token %}
@@ -17,16 +17,43 @@
                     <button class="btn btn-primary" type="submit">查询</button>
                 </span>
                 <span class="input-group-addon">日期</span>
-                <div class="input-group date form_date col-md-2">
+                <div class="input-group date form_date col-md-3">
                     <input class="form-control" size="16" type="text" name="date" value="{{ date }}" readonly>
                     <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                     <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                 </div>
             </div>
         </form>
+        <br>
+        <br>
 
-        <div>
-            <h2>swsw</h2>
-        </div>
+        {% if show_table|length != 0%}
+            <div class="col-md-6">
+                <h4>任务列表</h4>
+                <table class="table table-bordered table-hover">
+                    <tr>
+                        <th class="col-sm-2">任务</th>
+                        <th class="col-sm-2">检查</th>
+                        <th class="col-md-3">描述</th>
+                    </tr>
+                    {% for row in show_table %}
+                        <tr>
+                            <td>{{ row.0 }}</td>
+                            <td>
+                                {% if row.1 == True %}
+                                    <span class="glyphicon glyphicon-ok icon-success" aria-hidden="true"></span>
+                                {% elif row.1 == False %}
+                                    <a href="{{ row.2 }}"><span class="glyphicon glyphicon-remove icon-error" aria-hidden="true"></span></a>
+                                {% else %}
+                                    <span class="glyphicon glyphicon-alert icon-warning" aria-hidden="true"></span>&nbsp;&nbsp;未检查！
+                                {% endif %}
+                            </td>
+                            <td>{{ row.3 }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+                <button class="btn btn-success" href="www.baidu.com" type="submit">修改</button>
+            </div>
+        {% endif %}
     </div>
 {% endblock %}
