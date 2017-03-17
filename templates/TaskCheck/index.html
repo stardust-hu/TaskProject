@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}index{% endblock %}
+
+{% block header %}
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/daily.css' %}">
+{% endblock %}
+
+{% block main %}
+    <div class="dialy">
+    <h1>user: {{ user }}</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="提交">
+    </form>
+    </div>
+{% endblock %}

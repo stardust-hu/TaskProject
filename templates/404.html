@@ -1,0 +1,19 @@
+
+{% extends 'base.html' %}
+
+{% block title %}Page not found{% endblock %}
+
+{% block header %}
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/daily.css' %}">
+{% endblock %}
+
+{% block main %}
+    <div class="container">
+	    <div class="jumbotron" style="text-align: center;">
+	    	<h1>404 页面不存在</h1>
+        	<div class="alert alert-warning lead" role="alert">您所查询页面不存在！</div>
+        	<p><a class="btn btn-lg btn-primary" href="{% url 'home' %}" role="button">返回主页</a></p>
+      </div>
+    </div>
+{% endblock %}

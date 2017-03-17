@@ -1,0 +1,77 @@
+
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Welcome</h1>
+            <p>
+                欢迎来到涵德数据报告系统
+            </p>
+{#            <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>#}
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <h2>每日数据报告</h2>
+                <p>
+                    在这里将为您展示所有策略实盘收益数据和回测收益数据，以及从回测至实盘交易各个环节的收益数据，
+                    统计数据包括当日收益，5日周期收益，20日周期收益，以及总周期收益（从2016-11-16至查询日期）
+                </p>
+                <p><a class="btn btn-default" href="{% url 'daily' %}" role="button">查看详细 &raquo;</a></p>
+            </div>
+            <div class="col-md-4">
+                <h2>周期数据报告</h2>
+                <p>
+                    在这里将为您展示所有策略实盘收益数据，分解为各个策略，可以查询指定账户在自定义时间段内的收益数据，
+                    并使用图表展示，您还可设置各个策略的预期年化收益率，以便和实盘数据进行对比。
+                </p>
+                <p><a class="btn btn-default" href="{% url 'period' %}" role="button">查看详细 &raquo;</a></p>
+            </div>
+            <div class="col-md-4">
+                <h2>滑点数据报告</h2>
+                <p>
+                    在这里将为您展示所有策略实盘收益数据和回测收益数据，以及从回测至实盘交易各个环节的收益数据，
+                    您可以查询指定账户在自定义时间段内的各类数据，并以图表形式展现，方便分析从回测到交易各个环节的收益情况。
+                </p>
+                <p>
+                    <a class="btn btn-default" href="{% url 'diff' %}" role="button">滑点曲线 &raquo;</a>
+                    <a class="btn btn-default" href="{% url 'detail diff' %}" role="button">单日数据 &raquo;</a>
+                </p>
+            </div>
+            <div class="col-md-4">
+                <h2>回测数据报告</h2>
+                <p>
+                    在这里将为您展示所有策略回测收益数据，
+                    您可以查询指定日期内的回测结果。
+                </p>
+                <p><a class="btn btn-default" href="{% url 'simulation' %}" role="button">查看详细 &raquo;</a></p>
+            </div>
+            <div class="col-md-4">
+                <h2>基差展期查询</h2>
+                <p>
+                    在这里您可以查询截止查询当天市场上所有交易股指期货的基差数据和基差年化数据，
+                    以及各个股指期货之间的价差数据。
+                </p>
+                <p>
+                    <a class="btn btn-default" href="{% url 'basis' %}" role="button">基差展期 &raquo;</a>
+                    <a class="btn btn-default" href="{% url 'basis_annualized' %}" role="button">基差年化 &raquo;</a>
+                </p>
+            </div>
+            <div class="col-md-4">
+                <h2>CTA持仓数据分析</h2>
+                <p>
+                    在这里您可以查询从回测到交易最终结果各个阶段的期货分钟持仓数据，
+                    便于分析回测数据收益和实盘收益不一致由哪一环节造成
+                    （目前只能查询2017-02-03以来的数据）
+                </p>
+                <p>
+                    <a class="btn btn-default" href="{% url 'cta_holdings' %}" role="button">CTA持仓数据 &raquo;</a>
+                </p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

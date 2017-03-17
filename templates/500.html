@@ -1,0 +1,21 @@
+
+{% extends 'base.html' %}
+
+{% block title %}Server Error{% endblock %}
+
+{% block header %}
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/daily.css' %}">
+{% endblock %}
+
+{% block main %}
+    <div class="container">
+	    <div class="jumbotron" style="text-align: center;">
+	    	<h1>500 内部服务器错误</h1>
+            <div class="alert alert-danger lead" role="alert">
+                请联系 <a href="mailto: yhu@hantak.cn">yhu@hantak.cn</a>
+            </div>
+        	<p><a class="btn btn-lg btn-primary" href="{% url 'home' %}" role="button">返回主页</a></p>
+      </div>
+    </div>
+{% endblock %}

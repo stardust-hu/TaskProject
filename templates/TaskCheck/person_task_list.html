@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}index{% endblock %}
+
+{% block header %}
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/daily.css' %}">
+{% endblock %}
+
+{% block main %}
+    <div class="dialy">
+        <h4>当前用户：{{ user.username }} - {{ user.first_name }}</h4>
+        <form method="post">
+            {% csrf_token %}
+            <div class="input-group">
+                <span class="input-group-btn">
+                    <button class="btn btn-primary" type="submit">查询</button>
+                </span>
+                <span class="input-group-addon">日期</span>
+                <div class="input-group date form_date col-md-2">
+                    <input class="form-control" size="16" type="text" name="date" value="{{ date }}" readonly>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                </div>
+            </div>
+        </form>
+
+        <div>
+            <h2>swsw</h2>
+        </div>
+    </div>
+{% endblock %}
