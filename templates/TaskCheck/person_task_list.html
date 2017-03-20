@@ -27,17 +27,30 @@
         <br>
         <br>
 
+        {% if error %}
+            <h2>{{ error_message }}</h2>
+        {% endif %}
+
         {% if show_table|length != 0%}
-            <div class="col-md-6">
+            <div class="col-md-7">
                 <h4>任务列表</h4>
                 <table class="table table-bordered table-hover">
                     <tr>
+                        <th class="col-sm-1"></th>
                         <th class="col-sm-2">任务</th>
                         <th class="col-sm-2">检查</th>
                         <th class="col-md-3">描述</th>
                     </tr>
                     {% for row in show_table %}
                         <tr>
+                            <td>
+                                <form class="" method="post">
+                                    {% csrf_token %}
+                                    <label><input type="text" name="date" value="{{ date }}" hidden></label>
+                                    <label><input type="text" name="task" value="{{ row.0 }}" hidden></label>
+                                    <button class="btn btn-success" name="modify" value="true" type="submit">修改</button>
+                                </form>
+                            </td>
                             <td>{{ row.0 }}</td>
                             <td>
                                 {% if row.1 == True %}
@@ -52,7 +65,6 @@
                         </tr>
                     {% endfor %}
                 </table>
-                <button class="btn btn-success" href="www.baidu.com" type="submit">修改</button>
             </div>
         {% endif %}
     </div>

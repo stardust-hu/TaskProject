@@ -58,7 +58,7 @@ class Tag(models.Model):
 
 class DetailPost(models.Model):
     title = models.CharField(verbose_name='标题', max_length=120)
-    create_date = models.DateField(verbose_name='创建时间', auto_now_add=True)
+    create_date = models.DateTimeField(verbose_name='创建时间', auto_now_add=True)
     create_person = models.ForeignKey(verbose_name='创建人', to=Person, related_name='person_create')
     last_modified_time = models.DateTimeField(verbose_name='修改时间', auto_now=True)
     is_solve = models.BooleanField(verbose_name='处理?', default=False)

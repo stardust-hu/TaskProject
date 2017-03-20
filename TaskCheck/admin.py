@@ -3,7 +3,7 @@ from .models import Person, Task, PersonTask, DetailPost, Tag, PersonTaskList, U
 
 
 class DetailPostAdmin(admin.ModelAdmin):
-    list_display = ('title', 'create_date', 'create_person', 'last_modified_time', 'is_solve', 'solve_date', 'solve_person', 'tag', 'text')
+    list_display = ('title', 'id', 'create_date', 'create_person', 'last_modified_time', 'is_solve', 'solve_date', 'solve_person', 'tag')
 
 
 class PersonTaskListAdmin(admin.ModelAdmin):

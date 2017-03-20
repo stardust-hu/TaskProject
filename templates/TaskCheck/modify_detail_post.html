@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+
+{% block title %}index{% endblock %}
+
+{% block header %}
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/daily.css' %}">
+    <script src="{% static 'ckeditor/ckeditor.js' %}"></script>
+{% endblock %}
+
+{% block main %}
+    <div class="daily container">
+        <h4>当前用户：{{ user.username }} - {{ user.first_name }}</h4>
+        <br>
+        <form class="form-horizontal" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label class="col-sm-2 control-label">标题</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" name="title" value="{{ title }}" placeholder="{{ title }}" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">创建时间</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" name="create_date" value="{{ create_date }}" placeholder="{{ create_date }}" readonly>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">创建人</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" name="create_person" value="{{ create_person }}" placeholder="{{ create_person }}" readonly>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">修改时间</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" name="last_modified_time" value="{{ last_modified_time }}" placeholder="{{ last_modified_time }}" readonly>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">状态</label>
+                <div class="col-sm-5">
+                    <label class="radio-inline">
+                        <div class="has-success">
+                            <div class="radio">
+                                <input type="radio" name="is_solve" id="inlineRadio3" value="ok" {% if is_solve == True %}checked{% endif %}> 已处理
+                            </div>
+                        </div>
+                    </label>
+                    <label class="radio-inline">
+                        <div class="has-error">
+                            <div class="radio">
+                                <input type="radio" name="is_solve" id="inlineRadio3" value="error" {% if is_solve == False %}checked{% endif %}> 未处理
+                            </div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">处理日期</label>
+                <div class="col-sm-4">
+                    <div class="input-group date form_date">
+                        <input class="form-control" size="16" type="text" name="solve_date" value="{{ solve_date }}" readonly>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">处理人</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" name="solve_person" value="{{ solve_person }}" placeholder="{{ solve_person }}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">标签</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" name="tag" value="{{ tag }}" placeholder="{{ tag }}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">正文</label>
+
+                <div class="col-md-12 col-md-offset-2">
+                    <textarea name="text" id="text" style="width:100%;height:150px;" placeholder="请在这里描述详细信息">{{ text }}</textarea>
+                    <script>
+                        CKEDITOR.replace('text');
+                    </script>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-info" name="id" value="{{ id }}">提交</button>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}

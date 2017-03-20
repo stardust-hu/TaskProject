@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% block title %}modify{% endblock %}
+
+{% block header %}
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/daily.css' %}">
+{% endblock %}
+
+{% block main %}
+    <div class="daily container">
+        <h4>当前用户：{{ user.username }} - {{ user.first_name }}</h4>
+        <br>
+
+        {% if error %}
+            <h2>{{ error_message }}</h2>
+        {% endif %}
+
+        <div class="col-md-8">
+            <h3>任务状态确认</h3>
+            <br>
+            <form class="form-horizontal" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Task</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" name="task" value="{{ task }}" placeholder="{{ task }}" readonly>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">日期</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" name="date" value="{{ date }}" placeholder="{{ date }}" readonly>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">检查</label>
+                    <div class="col-sm-5">
+                        <label class="radio-inline">
+                            <div class="has-success">
+                                <div class="radio">
+                                    <input type="radio" name="checked" id="inlineRadio3" value="ok" {% if is_solve == True %}checked{% endif %}> 正常
+                                </div>
+                            </div>
+                        </label>
+                        <label class="radio-inline">
+                            <div class="has-error">
+                                <div class="radio">
+                                    <input type="radio" name="checked" id="inlineRadio3" value="error" {% if is_solve == False %}checked{% endif %}> 错误
+                                </div>
+                            </div>
+                        </label>
+                        <label class="radio-inline">
+                            <div class="has-warning">
+                                <div class="radio">
+                                    <input type="radio" name="checked" id="inlineRadio3" value="none" {% if is_solve == None %}checked{% endif %}> 未确认
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+{#                <div class="form-group">#}
+{#                    <label class="col-sm-2 control-label">URL</label>#}
+{#                    <div class="col-sm-4">#}
+{#                        <input type="text" id="detail_url" class="form-control" name="url" value="" placeholder="">#}
+{#                    </div>#}
+{#                </div>#}
+                {% if is_solve == False %}
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">详细信息</label>
+                        <div class="col-sm-5">
+                            <a href="{{ url }}"><button type="button" class="btn btn-warning">点击查看</button></a>
+                        </div>
+                    </div>
+                {% endif %}
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">创建日期</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" placeholder="{{ create_date }}" readonly>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">修改日期</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" placeholder="{{ last_modified_time }}" readonly>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-info">提交</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
