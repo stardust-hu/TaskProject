@@ -37,7 +37,6 @@ class PersonTask(models.Model):
     person = models.ForeignKey(verbose_name='姓名', to=Person)
     task = models.ForeignKey(verbose_name='任务', to=Task)
     is_solve = models.NullBooleanField(verbose_name='检查?', default=None)  # 为什么改不了变量名？/(ㄒoㄒ)/~~
-    url = models.URLField(verbose_name='详细链接', null=True, blank=True)
     create_date = models.DateTimeField(verbose_name='创建时间', auto_now_add=True)
     last_modified_time = models.DateTimeField(verbose_name='修改时间', auto_now=True)
 
@@ -57,6 +56,7 @@ class Tag(models.Model):
 
 
 class DetailPost(models.Model):
+    person_task = models.ForeignKey(verbose_name='任务详细', to=PersonTask)
     title = models.CharField(verbose_name='标题', max_length=120)
     create_date = models.DateTimeField(verbose_name='创建时间', auto_now_add=True)
     create_person = models.ForeignKey(verbose_name='创建人', to=Person, related_name='person_create')

@@ -56,12 +56,12 @@
                                 {% if row.1 == True %}
                                     <span class="glyphicon glyphicon-ok icon-success" aria-hidden="true"></span>
                                 {% elif row.1 == False %}
-                                    <a href="{{ row.2 }}"><span class="glyphicon glyphicon-remove icon-error" aria-hidden="true"></span></a>
+                                    <a href="{% url 'show_detail_post' %}/?person_task_id={{ row.3 }}&detail_post_id={{ row.4 }}"><span class="glyphicon glyphicon-remove icon-error" aria-hidden="true"></span></a>
                                 {% else %}
                                     <span class="glyphicon glyphicon-alert icon-warning" aria-hidden="true"></span>&nbsp;&nbsp;未检查！
                                 {% endif %}
                             </td>
-                            <td>{{ row.3 }}</td>
+                            <td>{{ row.2 }}</td>
                         </tr>
                     {% endfor %}
                 </table>

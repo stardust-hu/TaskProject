@@ -30,7 +30,7 @@ class PersonAdmin(admin.ModelAdmin):
 
 
 class PersonTaskAdmin(admin.ModelAdmin):
-    list_display = ('date', 'person', 'task', 'is_solve', 'url', 'create_date', 'last_modified_time')
+    list_display = ('date', 'person', 'task', 'is_solve', 'create_date', 'last_modified_time')
 
 
 class TagAdmin(admin.ModelAdmin):
