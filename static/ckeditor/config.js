@@ -6,8 +6,7 @@
 CKEDITOR.editorConfig = function( config ) {
 	// Define changes to default configuration here. For example:
 	config.language = 'zh-cn';
-	// config.uiColor = '#AADC6E';
-	config.extraPlugins = 'uploadimage';
+	config.extraPlugins = 'uploadimage,codesnippet';
 	config.imageUploadUrl = '/uploadImage';
 	config.toolbarGroups = [
 		{ name: 'document', groups: [ 'mode', 'document', 'doctools' ] },
@@ -27,4 +26,16 @@ CKEDITOR.editorConfig = function( config ) {
 	];
 
 	config.removeButtons = 'Source,Templates,Scayt,Select,Textarea,TextField,Button,ImageButton,HiddenField,Form,Checkbox,Radio,CreateDiv,Language,Anchor,Flash,Iframe,About,ShowBlocks';
+
+	config.codeSnippet_theme = 'tomorrow';
+	config.codeSnippet_languages = {
+		cpp: 'C++',
+		matlab: 'MATLAB',
+		python: 'Python',
+		markdown: 'Markdown',
+		xml: 'XML',
+		java: 'JAVA',
+		json: 'JSON',
+		sql: 'SQL'
+	};
 };
