@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Person, Task, PersonTask, DetailPost, Tag, PersonTaskList, User
+from .models import Person, Task, PersonTask, DetailPost, Tag, PersonTaskList, Picture
 
 
 class DetailPostAdmin(admin.ModelAdmin):
@@ -41,9 +41,14 @@ class TaskAdmin(admin.ModelAdmin):
     list_display = ('task', 'is_active', 'create_date', 'last_modified_time', 'describe')
 
 
+class PictureAdmin(admin.ModelAdmin):
+    list_display = ('uploader', 'image')
+
+
 admin.site.register(Person, PersonAdmin)
 admin.site.register(Task, TaskAdmin)
 admin.site.register(Tag, TagAdmin)
 admin.site.register(PersonTaskList, PersonTaskListAdmin)
 admin.site.register(PersonTask, PersonTaskAdmin)
 admin.site.register(DetailPost, DetailPostAdmin)
+admin.site.register(Picture, PictureAdmin)

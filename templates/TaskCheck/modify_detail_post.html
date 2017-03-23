@@ -97,15 +97,22 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-2 control-label">正文</label>
-
-                <div class="col-md-12 col-md-offset-2">
-                    <textarea name="text" id="text" style="width:100%;height:150px;" placeholder="请在这里描述详细信息">{{ text }}</textarea>
+{#                <label class="col-sm-2 control-label">正文</label>#}
+{##}
+{#                <div class="col-md-12 col-md-offset-2">#}
+                    <textarea name="text" id="text" placeholder="请在这里描述详细信息">
+                        {{ text|safe }}
+                        {% if text != '' %}
+                            <br>
+                            <hr>
+                        {% endif %}
+                        {% now 'Y-m-d H:i:s' %} [{{ user.username }} - {{ user.first_name }}]
+                    </textarea>
                     <script>
                         CKEDITOR.replace('text');
                     </script>
-                </div>
-            </div>
+{#                </div>#}
+{#            </div>#}
 
 
             <div class="form-group">

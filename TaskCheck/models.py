@@ -69,3 +69,11 @@ class DetailPost(models.Model):
 
     def __str__(self):
         return str(self.id)
+
+
+class Picture(models.Model):
+    uploader = models.ForeignKey(verbose_name='上传者', to=User, related_name='picture_user')
+    image = models.ImageField(upload_to='picture/%Y-%m-%d', blank=True, null=True)
+
+    def __str__(self):
+        return self.image

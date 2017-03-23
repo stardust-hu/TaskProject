@@ -5,22 +5,23 @@
 {% block header %}
     {% load staticfiles %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/daily.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'ckeditor/plugins/codesnippet/lib/highlight/styles/github.css' %}">
 {% endblock %}
 
 {% block main %}
     <div class="daily container">
         <br>
         <div class="blog-header">
-            <h2 class="blog-title">20170309 CTA 持仓不一致问题</h2>
+            <h2 class="blog-title">{{ title }}</h2>
         </div>
 
         <div class="row">
             <div class="blog-main">
                 <div class="blog-post">
                     {% if is_solve %}
-                        <h5 class="alert alert-success">【已处理】 {{ create_person }} 创建于 {{ create_date }}，该问题由 {{ solve_person }} 于 {{ solve_date }} 处理</h5>
+                        <h5 class="alert alert-success">【已处理】 <b>{{ create_person }}</b> 创建于 <b>{{ create_date }}</b>，该问题由 <b>{{ solve_person }}</b> 于 <b>{{ solve_date }}</b> 处理</h5>
                     {% else %}
-                        <h5 class="alert alert-danger">【暂未处理】 {{ create_person }} 创建于 {{ create_date }}， 处理人：{{ solve_person }}</h5>
+                        <h5 class="alert alert-danger">【暂未处理】 <b>{{ create_person }}</b> 创建于 <b>{{ create_date }}</b>， 处理人：<b>{{ solve_person }}</b></h5>
                     {% endif %}
 
                     <hr>
@@ -30,13 +31,23 @@
 
                 <nav>
                     <ul class="pager">
-                        <li><a href="{% url 'modify_detail_post' %}/?person_task_id={{ person_task_id }}&detail_post_id={{ detail_post_id }}">修改详细报告</a></li>
-                        <li><a href="{% url 'modify_person_task' %}/?date={{ person_task_date }}&task={{ person_task }}">修改该任务</a></li>
-                        <li><a href="{% url 'person_task_list' %}/?date={{ person_task_date }}">返回任务列表</a></li>
+                        <li><a href="{% url 'modify_detail_post' %}?person_task_id={{ person_task_id }}&detail_post_id={{ detail_post_id }}">修改详细报告</a></li>
+                        <li><a href="{% url 'modify_person_task' %}?date={{ person_task_date }}&task={{ person_task }}">修改该任务</a></li>
+                        <li><a href="{% url 'person_task_list' %}?date={{ person_task_date }}">返回任务列表</a></li>
                     </ul>
                 </nav>
 
             </div><!-- /.blog-main -->
         </div><!-- /.row -->
     </div>
+    <img href="{{ MEDIA_URL }}" />
+{% endblock %}
+
+
+{% block footer %}
+    {% load staticfiles %}
+    <script type="text/javascript" src="{% static 'ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js' %}"></script>
+    <script type="text/javascript">hljs.initHighlightingOnLoad();</script>
+    <script type="text/javascript" src="{% static 'js/MathJax/MathJax.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/MathJax/config/TeX-AMS-MML_HTMLorMML.js' %}"></script>
 {% endblock %}

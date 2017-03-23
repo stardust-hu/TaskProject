@@ -1,7 +1,7 @@
 # coding: utf8
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render, HttpResponseRedirect, HttpResponse, Http404
-from .models import PersonTask, Person, Tag, DetailPost, PersonTaskList
+from .models import PersonTask, Person, Tag, DetailPost, PersonTaskList, Picture
 
 from django.contrib import auth
 
@@ -164,29 +164,6 @@ def show_person_task_list(request):
     return render(request, template_name="TaskCheck/person_task_list.html", context=context)
 
 
-@csrf_exempt
-def upload_image(request):
-    print(request.GET)
-    print(request.POST)
-    if request.method == 'POST':
-        callback = request.GET.get('CKEditorFuncNum')
-        try:
-            path = "media/uploads/" + time.strftime("%Y/%m/", time.localtime())
-            # 这里path修改你要上传的路径, 这样就上传到了media/upload/下对应年月的文件夹
-            f = request.FILES["upload"]
-            file_name = path + f.name
-            des_origin_f = open(file_name, "wb+")
-            for chunk in f:
-                des_origin_f.write(chunk)
-            des_origin_f.close()
-        except Exception as e:
-            print(e)
-        res = r"<script>window.parent.CKEDITOR.tools.callFunction(" + callback + ",'/" + file_name + "', '');</script>"
-        return HttpResponse(res)
-    else:
-        raise Http404()
-
-
 def show_detail_post(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect('/login')
@@ -328,3 +305,24 @@ def modify_detail_post(request):
     else:
         raise Http404()
     return render(request, template_name="TaskCheck/modify_detail_post.html", context=context)
+
+
+@csrf_exempt
+def image_upload(request):
+    if request.method == 'POST':
+        if 'upload' in request.POST:
+            return HttpResponse('上传出错')
+
+        if 'upload' in request.FILES:
+            image = request.FILES["upload"]
+            image.name = request.user.username + '_' + image.name
+            picture = Picture(uploader=request.user, image=image)
+            picture.save()
+            if 'responseType=json' in request.path:
+                res = '{"uploaded": 1,"fileName": "%s","url": "%s"}' % (image.name, picture.image.url)
+            else:
+                callback = request.GET.get('CKEditorFuncNum')
+                res = "<script>window.parent.CKEDITOR.tools.callFunction(" + callback + ",'" + picture.image.url + "', '');</script>"
+            return HttpResponse(res)
+    else:
+        raise Http404()

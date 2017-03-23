@@ -4,38 +4,45 @@
  */
 
 CKEDITOR.editorConfig = function( config ) {
-	// Define changes to default configuration here. For example:
-	config.language = 'zh-cn';
-	config.extraPlugins = 'uploadimage,codesnippet';
-	config.imageUploadUrl = '/uploadImage';
-	config.toolbarGroups = [
-		{ name: 'document', groups: [ 'mode', 'document', 'doctools' ] },
-		{ name: 'clipboard', groups: [ 'clipboard', 'undo' ] },
-		{ name: 'editing', groups: [ 'find', 'selection', 'spellchecker', 'editing' ] },
-		{ name: 'forms', groups: [ 'forms' ] },
-		{ name: 'styles', groups: [ 'styles' ] },
-		{ name: 'tools', groups: [ 'tools' ] },
-		'/',
-		{ name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
-		{ name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi', 'paragraph' ] },
-		{ name: 'links', groups: [ 'links' ] },
-		{ name: 'insert', groups: [ 'insert' ] },
-		{ name: 'colors', groups: [ 'colors' ] },
-		{ name: 'others', groups: [ 'others' ] },
-		{ name: 'about', groups: [ 'about' ] }
-	];
+    config.language = 'zh-cn';
+    config.height = 600;
+    config.extraPlugins = 'uploadimage,codesnippet,mathjax';
+    config.filebrowserUploadUrl="/imageUpload/";
+    // config.uploadUrl    = '/upload_image';
+    // config.mathJaxLib = '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    config.mathJaxLib = '/static/js/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    // config.image_previewText = '';
+    // config.removeDialogTabs = 'image:info;image:Link;image:advanced';
+    config.removeDialogTabs = 'image:Link;image:advanced';
 
-	config.removeButtons = 'Source,Templates,Scayt,Select,Textarea,TextField,Button,ImageButton,HiddenField,Form,Checkbox,Radio,CreateDiv,Language,Anchor,Flash,Iframe,About,ShowBlocks';
+    config.toolbarGroups = [
+        { name: 'document', groups: [ 'document', 'mode', 'doctools' ] },
+        { name: 'clipboard', groups: [ 'clipboard', 'undo' ] },
+        { name: 'editing', groups: [ 'find', 'selection', 'spellchecker', 'editing' ] },
+        { name: 'links', groups: [ 'links' ] },
+        { name: 'insert', groups: [ 'insert' ] },
+        { name: 'forms', groups: [ 'forms' ] },
+        { name: 'tools', groups: [ 'tools' ] },
+        { name: 'others', groups: [ 'others' ] },
+        '/',
+        { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
+        { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi', 'paragraph' ] },
+        { name: 'styles', groups: [ 'styles' ] },
+        { name: 'colors', groups: [ 'colors' ] },
+        { name: 'about', groups: [ 'about' ] }
+    ];
 
-	config.codeSnippet_theme = 'tomorrow';
-	config.codeSnippet_languages = {
-		cpp: 'C++',
-		matlab: 'MATLAB',
-		python: 'Python',
-		markdown: 'Markdown',
-		xml: 'XML',
-		java: 'JAVA',
-		json: 'JSON',
-		sql: 'SQL'
-	};
+    config.removeButtons = 'Underline,Subscript,Superscript,Source,Templates,About,Flash,Form,TextField,Textarea,Select,HiddenField,ImageButton,Button,CreateDiv,Language';
+
+    config.codeSnippet_theme = 'tomorrow';
+    config.codeSnippet_languages = {
+        cpp: 'C++',
+        matlab: 'MATLAB',
+        python: 'Python',
+        markdown: 'Markdown',
+        xml: 'XML',
+        java: 'JAVA',
+        json: 'JSON',
+        sql: 'SQL'
+    };
 };
